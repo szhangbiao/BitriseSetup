@@ -1,4 +1,3 @@
 package com.szhangbiao.storage.di
 
-class StorageModule {
-}
+class StorageModule
