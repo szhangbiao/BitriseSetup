@@ -14,3 +14,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "BitriseSetup"
 include ':app'
+include ':core:storage'
+include ':core:ui'
+include ':core:api'
+include ':core:feature'
