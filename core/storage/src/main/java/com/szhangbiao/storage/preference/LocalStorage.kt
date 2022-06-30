@@ -1,4 +1,3 @@
 package com.szhangbiao.storage.preference
 
-interface LocalStorage {
-}
+interface LocalStorage
