@@ -1,0 +1,9 @@
+include("depPom")
+include(
+    ":core:base",
+    ":core:api",
+    ":core:storage",
+    ":core:ui",
+    ":core:feature",
+    ":app"
+)
