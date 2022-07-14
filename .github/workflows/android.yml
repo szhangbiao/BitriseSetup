@@ -7,10 +7,11 @@ on:
     branches: [ "develop" ]
 
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
+  gradle:
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, macos-latest, windows-latest ]
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
       - name: set up JDK 11
@@ -24,22 +25,22 @@ jobs:
         run: chmod +x gradlew
 
       - name: Android Lint Check
-      - uses: gradle/gradle-build-action@v2
+        uses: gradle/gradle-build-action@v2
         with:
           arguments: lintRelease
       - name: Android Lint
-      - uses: gradle/gradle-build-action@v2
+        uses: gradle/gradle-build-action@v2
         with:
           arguments: check
       - name: Ktlint check
-      - uses: gradle/gradle-build-action@v2
+        uses: gradle/gradle-build-action@v2
         with:
           arguments: ktlint
       - name: UnitTests
-      - uses: gradle/gradle-build-action@v2
+        uses: gradle/gradle-build-action@v2
         with:
           arguments: test
       - name: AssembleDebug
-      - uses: gradle/gradle-build-action@v2
+        uses: gradle/gradle-build-action@v2
         with:
           arguments: assembleDebug
