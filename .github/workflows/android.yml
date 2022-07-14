@@ -28,19 +28,24 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           arguments: lintRelease
+          gradle-version: 6.5
       - name: Android Lint
         uses: gradle/gradle-build-action@v2
         with:
           arguments: check
+          gradle-version: 6.5
       - name: Ktlint check
         uses: gradle/gradle-build-action@v2
         with:
           arguments: ktlint
+          gradle-version: 6.5
       - name: UnitTests
         uses: gradle/gradle-build-action@v2
         with:
           arguments: test
+          gradle-version: 6.5
       - name: AssembleDebug
         uses: gradle/gradle-build-action@v2
         with:
           arguments: assembleDebug
+          gradle-version: 6.5
