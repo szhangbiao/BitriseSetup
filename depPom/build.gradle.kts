@@ -14,6 +14,7 @@ val browser = "1.0.0"
 val composeMaterial = "1.1.0"
 val constraintLayout = "1.1.3"
 val core = "1.3.2"
+val testCore = "1.4.0"
 val coroutines = "1.6.0"
 val coroutinesTest = "1.6.0"
 val crashlytics = "17.2.2"
@@ -36,6 +37,7 @@ val gson = "2.8.6"
 val hamcrest = "1.3"
 val hilt = Versions.HILT_AGP
 val junit = "4.13.2"
+val robolectric = "4.2.1"
 val junitExt = "1.1.1"
 val lifecycle = "2.4.1"
 val lottie = "3.0.0"
@@ -48,6 +50,7 @@ val pageIndicator = "1.3.0"
 val playCore = "1.6.5"
 val profileInstaller = Versions.PROFILE_INSTALLER
 val room = "2.4.2"
+val crypto= "1.1.0-alpha03"
 val rules = "1.1.1"
 val runner = "1.2.0"
 val slidingpanelayout = "1.2.0-alpha01"
@@ -96,6 +99,7 @@ dependencies {
         api("${Libs.HILT_COMPILER}:$hilt")
         api("${Libs.HILT_TESTING}:$hilt")
         api("${Libs.JUNIT}:$junit")
+        api("${Libs.ROBOLECTRIC}:$robolectric")
         api("${Libs.EXT_JUNIT}:$junitExt")
         api("${Libs.KOTLIN_STDLIB}:${Versions.KOTLIN}")
         api("${Libs.LIFECYCLE_COMPILER}:$lifecycle")
@@ -112,6 +116,7 @@ dependencies {
         api("${Libs.ROOM_KTX}:$room")
         api("${Libs.ROOM_RUNTIME}:$room")
         api("${Libs.ROOM_COMPILER}:$room")
+        api("${Libs.CRYPTO}:$crypto")
         api("${Libs.OKHTTP}:$okhttp")
         api("${Libs.OKHTTP_LOGGING_INTERCEPTOR}:$okhttp")
         api("${Libs.OKIO}:$okio")
@@ -121,6 +126,7 @@ dependencies {
         api("${Libs.SLIDING_PANE_LAYOUT}:$slidingpanelayout")
         api("${Libs.TIMBER}:$timber")
         api("${Libs.UI_AUTOMATOR}:$uiAutomator")
+        api("${Libs.TEST_CORE_KTX}:$testCore")
         api("${Libs.VIEWPAGER2}:$viewpager2")
     }
 }

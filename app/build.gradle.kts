@@ -39,6 +39,13 @@ android {
         viewBinding = true
         dataBinding = true
     }
+
+    testOptions {
+        animationsDisabled = true
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
 }
 
 dependencies {

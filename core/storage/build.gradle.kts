@@ -34,22 +34,23 @@ android {
     // To avoid the compile error: "Cannot inline bytecode built with JVM target 1.8
     // into bytecode that is being built with JVM target 1.6"
     kotlinOptions {
-        val options = this as org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
+        val options = this
         options.jvmTarget = "1.8"
     }
 }
 
 dependencies {
-
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
     api(platform(project(":depPom")))
+    implementation("androidx.test:core-ktx:1.4.0")
     kapt(platform(project(":depPom")))
     api(project(":core:base"))
 
     implementation(Libs.ROOM_KTX)
     implementation(Libs.ROOM_RUNTIME)
     kapt(Libs.ROOM_COMPILER)
+    implementation(Libs.CRYPTO)
 
     // UI
     implementation(Libs.APPCOMPAT)
@@ -58,8 +59,10 @@ dependencies {
 
     // Local unit tests
     testImplementation(Libs.JUNIT)
+    testImplementation(Libs.TEST_CORE_KTX)
     testImplementation(Libs.ROOM_KTX)
     testImplementation(Libs.ROOM_RUNTIME)
+    testImplementation(Libs.ROBOLECTRIC)
 
     // Instrumentation tests
     androidTestImplementation(Libs.EXT_JUNIT)
