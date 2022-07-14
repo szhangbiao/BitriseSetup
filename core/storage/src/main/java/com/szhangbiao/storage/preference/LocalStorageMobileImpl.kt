@@ -10,7 +10,9 @@ import androidx.security.crypto.MasterKey
 class LocalStorageMobileImpl(context: Context) : ILocalStorage {
 
     companion object {
-        private const val SHARED_PREF = "SHARED_PREF"
+
+        @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+        const val SHARED_PREF = "SHARED_PREF"
         private const val SHARED_PREF_ENCRYPTED = "SHARED_PREF_PROTECTED"
 
         private const val SERIAL_NUMBER = "SERIAL_NUMBER"

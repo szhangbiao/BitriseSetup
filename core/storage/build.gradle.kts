@@ -37,17 +37,9 @@ android {
         val options = this
         options.jvmTarget = "1.8"
     }
-
-    //使用robolectric必须配置
-    testOptions {
-        unitTests {
-            isIncludeAndroidResources = true
-        }
-    }
 }
 
 dependencies {
-
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
     api(platform(project(":depPom")))
