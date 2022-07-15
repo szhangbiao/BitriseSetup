@@ -7,30 +7,33 @@ on:
     branches: [ "develop" ]
 
 jobs:
-  build:
-
+  github_action_checks:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
-    - name: set up JDK 11
-      uses: actions/setup-java@v3
-      with:
-        java-version: '11'
-        distribution: 'temurin'
-        cache: gradle
+      - uses: actions/checkout@v3
+      - name: set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: gradle
 
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-      
-    - name: Android Lint Check
-      run: ./gradlew lintRelease
-      
-    - name: Run unitTests
-      run: ./gradlew test
-      
-    - name: ktlint check with gradle
-      run: ./gradlew ktlint
-      
-    - name: App Assemble on Debug
-      run: ./gradlew assembleDebug
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Android Lint
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: check
+      - name: Ktlint
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: ktlint
+      - name: UnitTests
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: test
+      - name: AssembleDebug
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: assembleDebug
