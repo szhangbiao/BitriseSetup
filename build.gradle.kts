@@ -27,6 +27,14 @@ subprojects {
     apply("${project.rootDir}/script/ktlint.gradle")
 }
 
+gradleEnterprise {
+    buildScan {
+        publishAlways()
+        termsOfServiceUrl = "https://gradle.com/terms-of-service"
+        termsOfServiceAgree = "yes"
+    }
+}
+
 tasks.create<Delete>("clean") {
     delete(rootProject.buildDir)
 }

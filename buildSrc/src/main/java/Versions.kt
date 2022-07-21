@@ -1,3 +1,6 @@
+import java.text.SimpleDateFormat
+import java.util.*
+
 /*
  * Copyright 2020 Google LLC
  *
@@ -16,7 +19,7 @@
 
 object Versions {
 
-    val versionName = "1.0.0" // X.Y.Z; X = Major, Y = minor, Z = Patch level
+    val version = "1.0.0"
     val versionCode = 1
 
     const val COMPILE_SDK = 31
@@ -30,4 +33,8 @@ object Versions {
     const val KOTLIN = "1.6.10"
     const val NAVIGATION = "2.4.1"
     const val PROFILE_INSTALLER = "1.2.0-beta01"
+
+    fun buildTime(): String {
+        return SimpleDateFormat("yyyyMMddHH", Locale.getDefault()).format(Date())
+    }
 }
