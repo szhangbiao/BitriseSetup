@@ -68,6 +68,12 @@ android {
             isIncludeAndroidResources = true
         }
     }
+
+    lint {
+        quiet = true
+        abortOnError = true
+        ignoreWarnings = true
+    }
 }
 
 dependencies {
