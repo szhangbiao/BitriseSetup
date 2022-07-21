@@ -74,6 +74,10 @@ android {
         abortOnError = true
         ignoreWarnings = true
     }
+
+    packagingOptions {
+        resources.excludes.addAll(listOf("META-INF/NOTICE.txt", "META-INF/LICENSE.txt"))
+    }
 }
 
 dependencies {

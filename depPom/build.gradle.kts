@@ -58,6 +58,7 @@ val timber = "5.0.1"
 val viewpager2 = "1.0.0"
 val viewModelCompose = "1.0.0-alpha02"
 val uiAutomator = "2.2.0"
+val jodaTime = "2.10.14"
 
 
 dependencies {
@@ -128,6 +129,7 @@ dependencies {
         api("${Libs.UI_AUTOMATOR}:$uiAutomator")
         api("${Libs.TEST_CORE_KTX}:$testCore")
         api("${Libs.VIEWPAGER2}:$viewpager2")
+        api("${Libs.JODA_TIME}:$jodaTime")
     }
 }
 

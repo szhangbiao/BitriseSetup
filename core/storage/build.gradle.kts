@@ -51,6 +51,7 @@ dependencies {
     implementation(Libs.ROOM_RUNTIME)
     kapt(Libs.ROOM_COMPILER)
     implementation(Libs.CRYPTO)
+    implementation(Libs.JODA_TIME)
 
     // UI
     implementation(Libs.APPCOMPAT)

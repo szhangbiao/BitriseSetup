@@ -80,4 +80,5 @@ object Libs {
     const val UI_AUTOMATOR = "androidx.test.uiautomator:uiautomator"
     const val TEST_CORE_KTX = "androidx.test:core-ktx"
     const val VIEWPAGER2 = "androidx.viewpager2:viewpager2"
+    const val JODA_TIME = "net.danlew:android.joda"
 }
