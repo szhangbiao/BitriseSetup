@@ -5,6 +5,8 @@ plugins {
     id("androidx.navigation.safeargs.kotlin")
 }
 
+val buildDateTime = if (project.hasProperty("devBuild")) AppConfig.fixedBuildNo else Versions.buildTime()
+
 android {
     compileSdk = Versions.COMPILE_SDK
 
@@ -14,9 +16,15 @@ android {
         minSdk = Versions.MIN_SDK
         targetSdk = Versions.TARGET_SDK
         versionCode = Versions.versionCode
-        versionName = Versions.versionName
+        versionName = "${Versions.version}-$buildDateTime"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    if (project.hasProperty("devBuild")) {
+        splits.abi.isEnable = false
+        splits.density.isEnable = false
+        aaptOptions.cruncherEnabled = false
     }
 
     buildTypes {
@@ -24,7 +32,21 @@ android {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
+        getByName("debug") {
+            // Crashlytics
+//            ext.alwaysUpdateBuildId = false
+            isCrunchPngs = false
+        }
     }
+
+    flavorDimensions.add(AppConfig.dimension)
+    productFlavors {
+        create("dev") {
+            resourceConfigurations.addAll(listOf("en", "xxhdpi"))
+            dimension = AppConfig.dimension
+        }
+    }
+
     // Required for AR because it includes a library built with Java 8
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
