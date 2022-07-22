@@ -15,8 +15,8 @@ val composeMaterial = "1.1.0"
 val constraintLayout = "1.1.3"
 val core = "1.3.2"
 val testCore = "1.4.0"
-val coroutines = "1.6.0"
-val coroutinesTest = "1.6.0"
+val coroutines = "1.5.0"
+val coroutinesTest = "1.5.0"
 val crashlytics = "17.2.2"
 val dataStore = "1.0.0-beta01"
 val drawerLayout = "1.1.0-rc01"
@@ -37,6 +37,7 @@ val gson = "2.8.6"
 val hamcrest = "1.3"
 val hilt = Versions.HILT_AGP
 val junit = "4.13.2"
+val junitJupiter = "5.8.2"
 val robolectric = "4.2.1"
 val junitExt = "1.1.1"
 val lifecycle = "2.4.1"
@@ -58,6 +59,7 @@ val timber = "5.0.1"
 val viewpager2 = "1.0.0"
 val viewModelCompose = "1.0.0-alpha02"
 val uiAutomator = "2.2.0"
+val jodaTime = "2.10.14"
 
 
 dependencies {
@@ -72,6 +74,7 @@ dependencies {
         api("${Libs.CONSTRAINT_LAYOUT}:$constraintLayout")
         api("${Libs.CORE_KTX}:$core")
         api("${Libs.COROUTINES}:$coroutines")
+        api("${Libs.COROUTINES_ANDROID}:$coroutines")
         api("${Libs.COROUTINES_TEST}:$coroutinesTest")
 //        api("${Libs.CRASHLYTICS}:$crashlytics")
         api("${Libs.DATA_STORE_PREFERENCES}:$dataStore")
@@ -99,6 +102,8 @@ dependencies {
         api("${Libs.HILT_COMPILER}:$hilt")
         api("${Libs.HILT_TESTING}:$hilt")
         api("${Libs.JUNIT}:$junit")
+        api("${Libs.JUPITER}:$junitJupiter")
+        api("${Libs.JUPITER_ENGINE}:$junitJupiter")
         api("${Libs.ROBOLECTRIC}:$robolectric")
         api("${Libs.EXT_JUNIT}:$junitExt")
         api("${Libs.KOTLIN_STDLIB}:${Versions.KOTLIN}")
@@ -116,6 +121,7 @@ dependencies {
         api("${Libs.ROOM_KTX}:$room")
         api("${Libs.ROOM_RUNTIME}:$room")
         api("${Libs.ROOM_COMPILER}:$room")
+        api("${Libs.ROOM_TESTING}:$room")
         api("${Libs.CRYPTO}:$crypto")
         api("${Libs.OKHTTP}:$okhttp")
         api("${Libs.OKHTTP_LOGGING_INTERCEPTOR}:$okhttp")
@@ -128,6 +134,8 @@ dependencies {
         api("${Libs.UI_AUTOMATOR}:$uiAutomator")
         api("${Libs.TEST_CORE_KTX}:$testCore")
         api("${Libs.VIEWPAGER2}:$viewpager2")
+        api("${Libs.JODA_ANDROID}:$jodaTime")
+        api("${Libs.JODA_TIME}:$jodaTime")
     }
 }
 

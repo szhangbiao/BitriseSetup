@@ -15,7 +15,11 @@ android {
 
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments["room.incremental"] = "true"
+                arguments += mapOf(
+                    "room.schemaLocation" to "$projectDir/schemas",
+                    "room.incremental" to "true",
+                    "room.expandProjection" to "true"
+                )
             }
         }
     }
@@ -26,16 +30,12 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
-    // Some libs (such as androidx.core:core-ktx 1.2.0 and newer) require Java 8
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
-    // To avoid the compile error: "Cannot inline bytecode built with JVM target 1.8
-    // into bytecode that is being built with JVM target 1.6"
     kotlinOptions {
-        val options = this
-        options.jvmTarget = "1.8"
+        jvmTarget = AppConfig.kotlinJvmTarget
     }
 }
 
@@ -43,7 +43,6 @@ dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
     api(platform(project(":depPom")))
-    implementation("androidx.test:core-ktx:1.4.0")
     kapt(platform(project(":depPom")))
     api(project(":core:base"))
 
@@ -51,6 +50,9 @@ dependencies {
     implementation(Libs.ROOM_RUNTIME)
     kapt(Libs.ROOM_COMPILER)
     implementation(Libs.CRYPTO)
+    implementation(Libs.JODA_ANDROID)
+    implementation(Libs.KOTLIN_STDLIB)
+    implementation(Libs.COROUTINES_ANDROID)
 
     // UI
     implementation(Libs.APPCOMPAT)
@@ -59,10 +61,13 @@ dependencies {
 
     // Local unit tests
     testImplementation(Libs.JUNIT)
+    testImplementation(Libs.JUPITER)
+    testImplementation(Libs.JUPITER_ENGINE)
     testImplementation(Libs.TEST_CORE_KTX)
-    testImplementation(Libs.ROOM_KTX)
-    testImplementation(Libs.ROOM_RUNTIME)
+    testImplementation(Libs.ROOM_TESTING)
     testImplementation(Libs.ROBOLECTRIC)
+    testImplementation(Libs.JODA_TIME)
+    testImplementation(Libs.COROUTINES_TEST)
 
     // Instrumentation tests
     androidTestImplementation(Libs.EXT_JUNIT)

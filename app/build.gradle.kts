@@ -47,15 +47,12 @@ android {
         }
     }
 
-    // Required for AR because it includes a library built with Java 8
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
-    // To avoid the compile error: "Cannot inline bytecode built with JVM target 1.8
-    // into bytecode that is being built with JVM target 1.6"
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = AppConfig.kotlinJvmTarget
     }
     buildFeatures {
         viewBinding = true
@@ -73,6 +70,10 @@ android {
         quiet = true
         abortOnError = true
         ignoreWarnings = true
+    }
+
+    packagingOptions {
+        resources.excludes.addAll(listOf("META-INF/NOTICE.txt", "META-INF/LICENSE.txt"))
     }
 }
 
@@ -97,6 +98,9 @@ dependencies {
     implementation(Libs.INK_PAGE_INDICATOR)
     implementation(Libs.SLIDING_PANE_LAYOUT)
 
+    implementation(Libs.KOTLIN_STDLIB)
+    implementation(Libs.COROUTINES_ANDROID)
+
     // Architecture Components
     implementation(Libs.LIFECYCLE_LIVE_DATA_KTX)
     implementation(Libs.LIFECYCLE_RUNTIME_KTX)
@@ -116,6 +120,7 @@ dependencies {
 
     // Local unit tests
     testImplementation(Libs.JUNIT)
+    testImplementation(Libs.JUPITER_ENGINE)
     testImplementation(Libs.MOCKITO_CORE)
     testImplementation(Libs.MOCKITO_KOTLIN)
 }
