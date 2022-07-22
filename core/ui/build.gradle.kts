@@ -19,15 +19,12 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
-    // Some libs (such as androidx.core:core-ktx 1.2.0 and newer) require Java 8
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
-    // To avoid the compile error: "Cannot inline bytecode built with JVM target 1.8
-    // into bytecode that is being built with JVM target 1.6"
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = AppConfig.kotlinJvmTarget
     }
 
     buildFeatures {

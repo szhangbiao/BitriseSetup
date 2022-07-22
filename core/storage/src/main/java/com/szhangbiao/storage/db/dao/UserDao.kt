@@ -18,14 +18,14 @@ interface UserDao {
     suspend fun insertAll(users: List<User>)
 
     @Query("SELECT * FROM user")
-    suspend fun getAllUsers(): Flow<List<User>>
+    fun getAllUsers(): Flow<List<User>>
 
     @Query("SELECT * FROM user WHERE id = :userId")
-    suspend fun getUserById(userId: String): Flow<User?>
+    fun getUserById(userId: String): Flow<User?>
 
     @Delete
     suspend fun delete(user: User)
 
-    @Delete
+    @Query("DELETE FROM user")
     suspend fun deleteAll()
 }

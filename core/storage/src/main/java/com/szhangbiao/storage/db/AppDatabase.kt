@@ -5,11 +5,13 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.szhangbiao.storage.BuildConfig
 import com.szhangbiao.storage.db.converter.DateTimeConverter
 import com.szhangbiao.storage.db.dao.ProductDao
 import com.szhangbiao.storage.db.dao.UserDao
 import com.szhangbiao.storage.db.entity.Product
 import com.szhangbiao.storage.db.entity.User
+import com.szhangbiao.storage.db.migration.RoomMigrations
 
 @TypeConverters(DateTimeConverter::class)
 @Database(entities = [Product::class, User::class], version = 1)
@@ -18,7 +20,7 @@ abstract class AppDatabase : RoomDatabase() {
         private const val DB_NAME = "Database.db"
 
         @Volatile
-        private var instance: AppDatabase? = null
+        var instance: AppDatabase? = null
         private val LOCK = Any()
 
         operator fun invoke(context: Context) = instance ?: synchronized(LOCK) {
@@ -29,7 +31,13 @@ abstract class AppDatabase : RoomDatabase() {
 
         private fun buildDatabase(context: Context) =
             Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, DB_NAME)
-                .fallbackToDestructiveMigration().build()
+                .apply {
+                    if (BuildConfig.DEBUG) {
+                        fallbackToDestructiveMigration()
+                    } else {
+                        addMigrations(*RoomMigrations.migrations)
+                    }
+                }.build()
     }
 
     abstract fun userDao(): UserDao

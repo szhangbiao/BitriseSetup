@@ -18,14 +18,14 @@ interface ProductDao {
     suspend fun insertAll(products: List<Product>)
 
     @Query("SELECT * FROM product")
-    suspend fun getProducts(): Flow<List<Product>>
+    fun getProducts(): Flow<List<Product>>
 
     @Query("SELECT SUM( quantity * price ) from product")
-    suspend fun getCartAmount(): Flow<Double>
+    fun getCartAmount(): Flow<Double>
 
     @Delete
     suspend fun delete(product: Product)
 
-    @Delete
+    @Query("DELETE FROM product")
     suspend fun deleteAll()
 }
