@@ -1,5 +1,6 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
+    apply("${project.rootDir}/script/sync-commit-rules.gradle")
     repositories {
         google()
         mavenCentral()

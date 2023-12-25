@@ -1,0 +1,37 @@
+import java.security.MessageDigest
+
+// Copy git-commit-msg.sh file to git hooks dir
+// Mac need run command 'chmod +x .git/hooks/commit-msg'
+final def rootPath = rootProject.rootDir.path
+copyFile(rootProject.file("$rootPath/.git/hooks/commit-msg"), rootProject.file("$rootPath/script/git-commit-msg.sh"))
+
+// Copy git-pre-commit.sh file to git hooks dir
+// Mac need run command 'chmod +x .git/hooks/pre-commit'
+final def forceApplyKtlintWhenGitPreCommit = true
+if (forceApplyKtlintWhenGitPreCommit) {
+    copyFile(rootProject.file("$rootPath/.git/hooks/pre-commit"), rootProject.file("$rootPath/script/git-pre-commit.sh"))
+} else {
+    deleteFile(rootProject.file("$rootPath/.git/hooks/pre-commit"))
+}
+
+def copyFile(File oldFile, File newFile) {
+    if (!oldFile.exists() || !oldFile.isFile() || md5(oldFile) != md5(newFile)) {
+        copy {
+            from newFile
+            into oldFile.parent
+            rename {
+                oldFile.name
+            }
+        }
+    }
+}
+
+static def deleteFile(File file) {
+    if (file.exists() && file.isFile()) {
+        file.delete()
+    }
+}
+
+static md5(File file) {
+    return MessageDigest.getInstance("MD5").digest(file.bytes).encodeHex().toString().toLowerCase()
+}
